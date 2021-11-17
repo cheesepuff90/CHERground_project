@@ -15,4 +15,7 @@ export class Cart {
 
     @Column()
     quantity: number;
+
+    @Column()
+    optionKeyword?: string;
 }

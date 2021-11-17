@@ -6,12 +6,44 @@ import { CartError } from "../../../service/error/error";
 
 @injectable()
 export default class CartRepositoryImpl implements CartRepository {
-    async getCart(id: string): Promise<Cart> {
+    async getUserCartDetail(id: string, userId: string): Promise<Cart> {
         const cartRepo = (await connection).getRepository(Cart);
-        let cart = await cartRepo.findOne({where: {id:id}});
+        let cart = await cartRepo.findOne({
+            where: {
+                id:Number(id), user:Number(userId)
+            },
+            join: {
+                alias: "cart",
+                leftJoinAndSelect: {
+                    product: "cart.product",
+                    image: "product.image"
+                }
+            }
+        });
         
         if(cart) {
             return cart;
+        } else {
+            throw CartError.UNEXISTING_CART;
+        }
+    }
+
+    async getUserCart(userId: string): Promise<Cart[]> {
+        const cartRepo = (await connection).getRepository(Cart);
+        let userCart = await cartRepo.find({
+            where: {
+                user:Number(userId)
+            },
+            join: {
+                alias: "cart",
+                leftJoinAndSelect: {
+                    product: "cart.product",
+                    image: "product.image"
+                }
+            }
+        });
+        if(userCart) {
+            return userCart;
         } else {
             throw CartError.UNEXISTING_CART;
         }
@@ -22,13 +54,24 @@ export default class CartRepositoryImpl implements CartRepository {
         cartRepo.save(cart)
     }
 
-    async updateCart(cart: Cart): Promise<void> {
+    async updateCart(quantity: Cart): Promise<void> {
         const cartRepo = (await connection).getRepository(Cart);
-        cartRepo.save(cart)
+        cartRepo.save(quantity);
     }
 
     async deleteCart(id: string): Promise<void> {
         const cartRepo = (await connection).getRepository(Cart);
-        cartRepo.delete(id);
+        let cartIds = []
+        let userCarts = await cartRepo.find({
+            where: {
+                user:Number(id)
+            }
+        });
+
+        for (var cart of userCarts) {
+            cartIds.push(cart.id);
+        }
+        
+        cartRepo.delete(cartIds);
     }
 }

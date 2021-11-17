@@ -16,7 +16,9 @@ export default class ProductRepositoryImpl implements ProductRepository {
             join: {
                 alias: "product",
                 leftJoinAndSelect: {
-                    image: "product.image"
+                    image: "product.image",
+                    productCategory: "product.productCategory",
+                    category: "productCategory.category"
                 }
             }
         });
@@ -35,7 +37,8 @@ export default class ProductRepositoryImpl implements ProductRepository {
                 alias: "product",
                 leftJoinAndSelect: {
                     image: "product.image",
-                    category: "product.category",
+                    productCategory: "product.productCategory",
+                    category: "productCategory.category",
                     options: "product.options",
                     keyword: "options.keyword",
                     status: "product.status"

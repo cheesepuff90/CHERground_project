@@ -17,10 +17,24 @@ export default class CartServiceImpl implements CartService {
         this.cartMapper = cartMapper;
     }
 
-    async getCart(id: string): Promise<CartDto> {
+    async getCart(id: string, userId: string): Promise<CartDto> {
         try {
-            let cart = await this.cartRepository.getCart(id);
+            let cart = await this.cartRepository.getUserCartDetail(id, userId);
             return this.cartMapper.convert(cart);
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    async getUserCart(user: string): Promise<CartDto[]> {
+        try {
+            let carts = await this.cartRepository.getUserCart(user);
+            let result = [];
+            for (var cart of carts) {
+                let value = this.cartMapper.convert(cart);
+                result.push(value);
+            }
+            return result;
         } catch (err) {
             throw err;
         }
@@ -32,9 +46,9 @@ export default class CartServiceImpl implements CartService {
         return "successfully saved";
     }
 
-    async updateCart(cart: CartDto): Promise<string> {
-        let cartInfo = this.cartMapper.revert(cart);
-        await this.cartRepository.updateCart(cartInfo)
+    async updateCart(quantity: CartDto): Promise<string> {
+        let updateInfo = this.cartMapper.revert(quantity)
+        await this.cartRepository.updateCart(updateInfo);
         return "successfully updated";
     }
 
