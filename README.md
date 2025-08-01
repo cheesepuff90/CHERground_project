@@ -2,36 +2,42 @@
 
 ## Overview
 
-The **CHERground Project** is a TypeScript-based application focused on building a comprehensive repository and management system for products, categories, carts, images, options, keywords, and user data. The project implements a robust backend structure that solves the problem of organizing, associating, and retrieving various entities in a scalable and maintainable way.
+The **CHERground Project** is a TypeScript-based Point-of-Sale (POS) service designed for retailers. This project provides a robust backend solution for managing products, categories, carts, images, options, keywords, and user data—empowering retailers to handle their business operations with efficiency and flexibility.
 
 ## Problem Statement
 
-The challenge addressed in this project was to provide a flexible and well-structured backend architecture for managing e-commerce-like data entities. The system needed to handle complex relationships between products, categories, carts, images, and user information, as well as ensure efficient storage, retrieval, and updating of data. 
+Retailers often struggle with fragmented systems that cannot efficiently manage complex relationships between inventory, categories, carts, and customer data. The CHERground Project solves this by providing a unified backend architecture that supports scalable, maintainable, and high-performance data operations for retail POS environments.
 
 ## My Role
 
-As the primary developer and architect of the CHERground Project, I was responsible for:
-- Designing the overall data model and interface architecture.
-- Implementing repository patterns for each core entity (Product, Category, Cart, Image, Status, Options, Keyword, User).
-- Integrating dependency injection for better testability and modularity.
-- Building and testing CRUD operations for all entities.
-- Ensuring the codebase was organized, readable, and reusable, allowing for future expansion and maintenance.
+As the primary developer and architect, I:
+- Designed the data model and repository patterns for all core entities (Product, Category, Cart, Image, Status, Options, Keyword, User).
+- Implemented dependency injection for modular, testable code.
+- Built and tested CRUD operations for each entity.
+- Focused on code organization and scalability, ensuring a foundation for future features and seamless maintenance.
+
+## Technical Highlights
+
+- **Eager Loading for Performance:** To address potential bottlenecks caused by frequent database lookups, the implementation leverages eager-loading via TypeORM’s join strategies. This ensures that related entities (such as product images and categories) are loaded efficiently in a single query, reducing round-trips and improving overall system performance.
+- **Comprehensive Repository Interfaces:** Each core entity is managed via a well-defined repository interface, supporting clean separation of concerns and code reuse.
+- **Dependency Injection:** Utilizes InversifyJS for scalable and testable architecture.
+- **Full CRUD Support:** All entities support create, read, update, and delete operations.
+- **Type Safety & Maintainability:** TypeScript ensures robust, reliable, and maintainable code.
 
 ## Tech Stack
 
 - **Language:** TypeScript
-- **ORM:** TypeORM (for database interactions and repository management)
+- **ORM:** TypeORM
 - **Dependency Injection:** InversifyJS
 - **Database:** MySQL
-- **Project Structure:** Modular repository and service layers for separation of concerns
+- **Project Structure:** Modular repository and service layers
 
 ## Features
 
-- **Comprehensive Repository Interfaces:** Well-defined interfaces for data access related to products, categories, carts, images, users, and other entities.
-- **Dependency Injection:** Clean and scalable architecture using InversifyJS.
-- **CRUD Operations:** Full support for creating, reading, updating, and deleting all core data entities.
-- **Expandable Design:** Easily extendable to support new entities and business logic as requirements evolve.
-- **Strong Typing and Structure:** Leveraging TypeScript for maintainable and error-resistant code.
+- Unified backend for POS retail operations
+- Efficient handling of product, cart, and category relationships
+- Expandable for new business logic and entities
+- Structured for maintainability and scalability
 
 ## Getting Started
 
@@ -52,5 +58,7 @@ As the primary developer and architect of the CHERground Project, I was responsi
    ```bash
    npm start
    ```
+
+---
 
 > Built and maintained by [cheesepuff90](https://github.com/cheesepuff90)
