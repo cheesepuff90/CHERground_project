@@ -22,7 +22,7 @@ As the primary developer and architect of the CHERground Project, I was responsi
 - **Language:** TypeScript
 - **ORM:** TypeORM (for database interactions and repository management)
 - **Dependency Injection:** InversifyJS
-- **Database:** (Assumed relational, e.g., PostgreSQL/MySQL, via TypeORM)
+- **Database:** MySQL
 - **Project Structure:** Modular repository and service layers for separation of concerns
 
 ## Features
@@ -52,15 +52,5 @@ As the primary developer and architect of the CHERground Project, I was responsi
    ```bash
    npm start
    ```
-
-## Contributing
-
-Contributions are welcome! Please fork the repo, open issues, or submit pull requests.
-
-## License
-
-This project is currently unlicensed.
-
----
 
 > Built and maintained by [cheesepuff90](https://github.com/cheesepuff90)
