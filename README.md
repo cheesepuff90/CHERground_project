@@ -61,4 +61,3 @@ As the primary developer and architect, I:
 
 ---
 
-> Built and maintained by [cheesepuff90](https://github.com/cheesepuff90)
